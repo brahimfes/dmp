@@ -42,7 +42,7 @@ include_once('includes.php');
 				
 				<form method="post" action="afficheDonnee.php">
 					
-					<label>pid patient</label>
+					<label>Entree l'identifiant du patient</label>
 					
 					<input class="input" type="text" name="pid" maxlength="20" required="required">
 

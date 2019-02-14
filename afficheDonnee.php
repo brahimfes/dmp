@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'includes.php';
+include ("barre_de_nav.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +18,12 @@ include_once 'includes.php';
 	 crossorigin="anonymous"></script>
 	 <script src="js/parser.js"></script>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-	<title>affichage donnée patient</title>
+	<title>affichage donnee patient</title>
 </head>
 
 <body>
 	<?php
-include "barre_de_nav.php";
+
 $errors = array();
 $patient;
 
@@ -30,7 +31,7 @@ if (!isset($_POST['pid'])) {
     header('Location: patient.php');
 }
 
-print_r($_POST);
+
 if (isset($_POST['rendezvous'])) {
     if (!isset($_POST['agenda'])) {
         array_push($errors, 'Agenda non séléctionnée');
@@ -82,15 +83,15 @@ if (isset($_POST['rendezvous'])) {
 
 			<div class="col-xs-10 col-sm-8 col-md-10">
 
-				<h1 class="index-h1">Patient pid :
+				<h1 class="index-h1">Identifiant du patient(PID) :
 					<?php $pid = $_POST['pid'];
 					echo $pid?>
 				</h1>
-				<h1>Patient</h1>
+				<h1>Donnees du Patient</h1>
 				<table>
 					<tr>
 						<th>Nom</th>
-						<th>Prénom</th>
+						<th>Prenom</th>
 						<th>Date de naissance</th>
 						<th>Age</th>
 						<th>Sexe</th>
@@ -168,7 +169,7 @@ if (isset($_POST['rendezvous'])) {
 									<option value="ecg">ECG</option>
 									<option value="ocymetre">Oxymetre</option>
 									<option value="tensionmetre">Tensiometre</option>
-									<option value="temperature">Température</option>
+									<option value="temperature">Temperature</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -187,7 +188,7 @@ if (isset($_POST['rendezvous'])) {
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="doctor">Médecin</label>
+								<label for="doctor">Medecin</label>
 								<input type="text" value="Dominique" class="form-control" name="medecin" id="doctor" placeholder="Médecin">
 							</div>
 
@@ -201,16 +202,16 @@ if (isset($_POST['rendezvous'])) {
 
 				<table>
 					<tr>
-						<th>Nom du médecin</th>
-						<th>Date</th>
-						<th>Heure</th>
+						<th>Nom du medecin</th>
+						<th>Date RDV</th>
+						<th>Heure RDV</th>
 						<th>Agenda</th>
 						<th>Acte</th>
-						<th></th>
+						<th>Etat</th>
 					</tr>
 					<?php
 						include 'conn.php';
-						$res = $mysqli->query("SELECT id, pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, acte, agenda FROM rendez_vous where pid=" . $_POST['pid']);
+						$res = $mysqli->query("SELECT id, pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, acte, agenda, etat FROM rendez_vous where pid=" . $_POST['pid']);
 
 						for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
 							$res->data_seek($row_no);
@@ -237,8 +238,20 @@ if (isset($_POST['rendezvous'])) {
 						</td>
 						<td>
 						<p>
-							<button class="btn btn-success" type="button" onclick='getHL7(<?php echo htmlspecialchars(json_encode($row)); ?>);'>
-								Start
+							<button 
+								class="btn btn-success" 
+								<?php if($row['etat'] == 'finalise') { ?>disabled <?php } ?>
+								id="<?php echo $row['id']; ?>" type="button"
+								onclick='getHL7(<?php echo htmlspecialchars(json_encode($row)); ?>)'>
+								<?php 
+									if($row['etat'] == 'finalise') {
+										echo 'Finalise';
+									} else {
+										echo 'Debut d\'examen';
+									}
+								
+
+								?>
 							</button>
 							</p>
 						</td>
@@ -247,16 +260,18 @@ if (isset($_POST['rendezvous'])) {
 						}
 					?>
 				</table>
-				<h1>Données collectées</h1>
+				<h1>Resultats des capteurs</h1>
 				<table>
 					<tr>
-						<th>Nom du médecin</th>
-						<th>Date</th>
-						<th>Heure</th>
+						<th>ID</th>
+						<th>Resultat</th>
+						<th>Unite</th>
+						<th>Date rendez_vous</th>
+						<th>References</th>
 					</tr>
 					<?php
 						include 'conn.php';
-						$res = $mysqli->query("SELECT Temperature,Frequence_Cardiaque,SpO2,Tension_Arterielle_diastolique,Tension_Arterielle_systolique FROM resultats_capteurs where pid=" . $_POST['pid']);
+						$res = $mysqli->query("select * from obx where pid=" . $_POST['pid']);
 
 						for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
 							$res->data_seek($row_no);
@@ -265,20 +280,17 @@ if (isset($_POST['rendezvous'])) {
 					<tr>
 
 						<td>
-							<?php echo $row['Temperature']; ?>
+							<?php echo $row['set_id']; ?>
 						</td>
 
 						<td>
-							<?php echo $row['Frequence_Cardiaque']; ?>
+							<?php echo $row['value']; ?>
 						</td>
 						<td>
-							<?php echo $row['SpO2']; ?>
+							<?php echo $row['units']; ?>
 						</td>
 						<td>
-							<?php echo $row['Tension_Arterielle_diastolique']; ?>
-						</td>
-						<td>
-							<?php echo $row['Tension_Arterielle_systolique']; ?>
+							<?php echo $row['references_range']; ?>
 						</td>
 
 					</tr>

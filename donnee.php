@@ -11,7 +11,7 @@ echo $_SESSION['id'];
 	<link href="bootstrap/js/bootstrap.js" rel="stylesheet" type="text/css"/>
 	
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen"/>
-	<title>Donnée</title>
+	<title>Donnee</title>
 </header>
 <body>
 	<nav class="navbar navbar-default">
@@ -59,11 +59,11 @@ echo $_SESSION['id'];
 			<div class="col-xs-1 col-sm-2 col-md-3"></div>
 			<div class="col-xs-10 col-sm-8 col-md-6">
 				
-				<h1 class="index-h1">Donnée</h1>
+				<h1 class="index-h1">Donnee</h1>
 				<p>ryhtme cardiaque</p><br>
 				<img src="rythmeTest.jpg" class="images_petit">
-				<p>température</p><br>
-				<p>vidéo de la consultation</p>
+				<p>temperature</p><br>
+				<p>video de la consultation</p>
 			</div>
 			<div class="col-xs-1 col-sm-2 col-md-3"></div>
 		</div>

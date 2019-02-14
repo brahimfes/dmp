@@ -9,7 +9,7 @@ class connexionDB
     private $host = 'localhost';
     private $name = 'sih';
     private $user = "root";
-    private $pass = 'root';
+    private $pass = '';
     private $connexion;
 
     public function __construct($host = null, $name = null, $user = null, $pass = null)

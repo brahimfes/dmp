@@ -12,7 +12,7 @@ include_once('includes.php');
 		<link href="bootstrap/js/bootstrap.js" rel="stylesheet" type="text/css"/>
 		
 		<link href="style.css" rel="stylesheet" type="text/css" media="screen"/>
-		<title>Donnée collectée</title>
+		<title>Donnee collectee</title>
 		
 	</header>
 	<body>
@@ -30,19 +30,19 @@ include_once('includes.php');
 	
 		
 			       	
-			       	<h1 class="index-h1">Donnée collectée</h1>
+			       	<h1 class="index-h1">Donnees des patients</h1>
 			       	<table>
 			<tr>
 			<th>pid</th>
 			<th>Nom</th>
-			<th>Prénom</th>
+			<th>Prenom</th>
 			<th>Date de naissance</th>
 			<th>Sexe</th>
-			<th>Température</th>
-			<th>Fréquence cardiaque</th>
+			<th>Temperature</th>
+			<th>Frequence cardiaque</th>
 			<th>SpO2</th>
-			<th>Tension artérielle diastolique</th>
-			<th>tension artérielle systolique</th>
+			<th>Tension arterielle diastolique</th>
+			<th>tension arterielle systolique</th>
 			</tr>
 			
 	<?php
