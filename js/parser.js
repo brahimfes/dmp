@@ -23,7 +23,7 @@ const addTransaction = async (data) => {
     });
     const myJson = await response.json(); //extract JSON from the http response
     console.log('result', myJson);
-    mine();
+    //mine();
   }
 
   const mine = async () => {
