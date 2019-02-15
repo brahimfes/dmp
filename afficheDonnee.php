@@ -54,7 +54,6 @@ if (isset($_POST['rendezvous'])) {
     if (count($errors) > 0) {
         print_r($errors);
     } else {
-        echo 'enregistrement';
         $sql = "insert into rendez_vous (pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, agenda, acte) values
 		(:pid, :nomdupatient, :prenomdupatient, :nomdumedecin, :dates, :heure, :agenda, :acte)";
         $result = $DB->insert($sql,
@@ -69,8 +68,6 @@ if (isset($_POST['rendezvous'])) {
                 'acte' => $_POST['acte'],
             )
         );
-
-        print_r($result);
 
     }
 }
