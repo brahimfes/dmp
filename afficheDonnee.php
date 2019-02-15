@@ -7,9 +7,13 @@ include_once('includes.php');
 <html lang="fr">
 
 <head>
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="bootstrap/js/bootstrap.js" rel="stylesheet" type="text/css"/>
-	 <script src="js/parser.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+
+	<script src="js/parser.js"></script>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 	<title>affichage donnee patient</title>
 </head>
@@ -136,6 +140,19 @@ if (isset($_POST['rendezvous'])) {
 				<h1>Rendez-vous</h1>
 				<!-- <button type="button" class="btn btn-success">Nouveau rendez-vous</button> <br /> -->
 
+				<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+				 aria-controls="collapseExample">
+					Link with href
+				</a>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+				 aria-controls="collapseExample">
+					Button with data-target
+				</button>
+				<div class="collapse" id="collapseExample">
+					<div class="well">
+						...
+					</div>
+				</div>
 				<p>
 					<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
 					 aria-controls="collapseExample">
@@ -144,7 +161,8 @@ if (isset($_POST['rendezvous'])) {
 				</p>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-					pid: <?php echo $_POST['pid']; ?>
+						pid:
+						<?php echo $_POST['pid']; ?>
 						<form method="post" action="afficheDonnee.php">
 							<input type="hidden" name="pid" value="<?php echo $_POST['pid']; ?>" />
 							<input type="hidden" name="nompatient" value="<?php echo $patient['nom']; ?>" />
@@ -231,13 +249,14 @@ if (isset($_POST['rendezvous'])) {
 							<?php echo $row['acte']; ?>
 						</td>
 						<td>
-						<p>
-							<button 
-								class="btn btn-success" 
-								<?php if($row['etat'] == 'finalise') { ?>disabled <?php } ?>
-								id="<?php echo $row['id']; ?>" type="button"
-								onclick='getHL7(<?php echo htmlspecialchars(json_encode($row)); ?>)'>
-								<?php 
+							<p>
+								<button class="btn btn-success" <?php if($row['etat']=='finalise' ) { ?>disabled
+									<?php } ?>
+									id="
+									<?php echo $row['id']; ?>" type="button"
+									onclick='getHL7(
+									<?php echo htmlspecialchars(json_encode($row)); ?>)'>
+									<?php 
 									if($row['etat'] == 'finalise') {
 										echo 'Finalise';
 									} else {
@@ -246,7 +265,7 @@ if (isset($_POST['rendezvous'])) {
 								
 
 								?>
-							</button>
+								</button>
 							</p>
 						</td>
 					</tr>
