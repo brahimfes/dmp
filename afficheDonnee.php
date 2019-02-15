@@ -141,7 +141,6 @@ if (isset($_POST['rendezvous'])) {
 				</table>
 				<h1>Rendez-vous</h1>
 				<!-- <button type="button" class="btn btn-success">Nouveau rendez-vous</button> <br /> -->
-
 				<p>
 					<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
 					 aria-controls="collapseExample">
@@ -238,14 +237,13 @@ if (isset($_POST['rendezvous'])) {
 							<?php echo $row['acte']; ?>
 						</td>
 						<td>
-							<p>
-								<button class="btn btn-success" <?php if($row['etat']=='finalise' ) { ?>disabled
-									<?php } ?>
-									id="
-									<?php echo $row['id']; ?>" type="button"
-									onclick='getHL7(
-									<?php echo htmlspecialchars(json_encode($row)); ?>)'>
-									<?php 
+						<p>
+							<button 
+								class="btn btn-success" 
+								<?php if($row['etat'] == 'finalise') { ?>disabled <?php } ?>
+								id="<?php echo $row['id']; ?>" type="button"
+								onclick='getHL7(<?php echo htmlspecialchars(json_encode($row)); ?>)'>
+								<?php 
 									if($row['etat'] == 'finalise') {
 										echo 'Finalise';
 									} else {
