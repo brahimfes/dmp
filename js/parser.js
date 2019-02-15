@@ -14,7 +14,7 @@ function getHL7(data) {
 
 
 const addTransaction = async (data) => {
-    const response = await fetch('https://middleware-its.herokuapp.com//transactions', {
+    const response = await fetch('https://middleware-its.herokuapp.com/transactions', {
       method: 'POST',
       body: data,
       headers:{
@@ -27,7 +27,7 @@ const addTransaction = async (data) => {
   }
 
   const mine = async () => {
-    const response = await fetch('https://middleware-its.herokuapp.com//mine', {
+    const response = await fetch('https://middleware-its.herokuapp.com/mine', {
       method: 'GET'
     });
     const myJson = await response.json(); //extract JSON from the http response
