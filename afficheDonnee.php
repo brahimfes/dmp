@@ -7,16 +7,23 @@ include_once 'includes.php';
 <html lang="fr">
 
 <head>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	 crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	 crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-	 crossorigin="anonymous"></script>
-	 <script src="js/parser.js"></script>
+	 crossorigin="anonymous"></script>-->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="bootstrap/js/transition.js"></script>
+	<script src="bootstrap/js/collapse.js"></script>
+	<script src="js/parser.js"></script>
 	<title>affichage donnee patient</title>
 </head>
 
@@ -73,10 +80,6 @@ if (isset($_POST['rendezvous'])) {
                 'acte' => $_POST['acte'],
             )
         );
-<<<<<<< HEAD
-=======
-
->>>>>>> ad7474285c4216cbb51e9108d20bc31dbd3c3bda
     }
 }
 
@@ -142,11 +145,13 @@ if (isset($_POST['rendezvous'])) {
 				</table>
 				<h1>Rendez-vous</h1>
 				<!-- <button type="button" class="btn btn-success">Nouveau rendez-vous</button> <br /> -->
+				
+				
 				<p>
-					<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-					 aria-controls="collapseExample">
-						Nouveau rendez-vous
-					</button>
+				<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                                       aria-controls="collapseExample">
+                                              Nouveau rendez-vous
+                                      </button>
 				</p>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
@@ -159,14 +164,14 @@ if (isset($_POST['rendezvous'])) {
 							<input type="hidden" name="rendezvous" value="true" />
 							<div class="form-group">
 								<label for="date">Agenda</label>
-								<select class="custom-select" name="agenda">
+								<select class="form-control" name="agenda">
 									<option value="Prise constante">Prise constante</option>
 									<option value="consultation">Consultation</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="date">Acte</label>
-								<select class="custom-select" name="acte">
+								<select class="form-control" name="acte">
 									<option value="ecg">ECG</option>
 									<option value="ocymetre">Oxymetre</option>
 									<option value="tensionmetre">Tensiometre</option>
@@ -178,7 +183,7 @@ if (isset($_POST['rendezvous'])) {
 								<input type="date" class="form-control" name="date" id="date" aria-describedby="date" placeholder="Entrer la date">
 							</div>
 							<div class="form-group">
-								<select class="custom-select" name="heure">
+								<select class="form-control" name="heure">
 									<option selected>Heure</option>
 									<?php
 										for ($i = 8; $i <= 16; $i++) {
@@ -289,7 +294,7 @@ if (isset($_POST['rendezvous'])) {
                                           </tr>
                                           <?php
 
-                                          $res = $mysqli->query("SELECT id, contenu, dateCreation FROM rapport where pid=" . $_POST['pid']);
+                                          $res = $mysqli->query("SELECT id, contenu, 'date' FROM rapport where pid=" . $_POST['pid']);
 
  
 
@@ -310,7 +315,7 @@ if (isset($_POST['rendezvous'])) {
                                                                           <?php echo $row['contenu']; ?>
                                                                 </td>
 																<td>
-                                                                          <?php echo $row['dateCreation']; ?>
+                                                                          <?php echo $row['date']; ?>
 
                                                                 </td>
                                                      </tr>
