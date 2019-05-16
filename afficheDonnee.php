@@ -22,6 +22,11 @@ include ("barre_de_nav.php");
 </head>
 
 <body>
+<div class="container-fluid">
+
+<div class="row">
+
+	<div class="col-xs-10 col-sm-8 col-md-12">
 	<?php
 
 $errors = array();
@@ -69,19 +74,12 @@ if (isset($_POST['rendezvous'])) {
                 'acte' => $_POST['acte'],
             )
         );
-
-        print_r($result);
-
     }
 }
 
 ?>
 
-	<div class="container-fluid">
 
-		<div class="row">
-
-			<div class="col-xs-10 col-sm-8 col-md-10">
 
 				<h1 class="index-h1">Identifiant du patient(PID) :
 					<?php $pid = $_POST['pid'];
@@ -207,11 +205,11 @@ if (isset($_POST['rendezvous'])) {
 						<th>Heure RDV</th>
 						<th>Agenda</th>
 						<th>Acte</th>
-						<th>Etat</th>
+
 					</tr>
 					<?php
 						include 'conn.php';
-						$res = $mysqli->query("SELECT id, pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, acte, agenda, etat FROM rendez_vous where pid=" . $_POST['pid']);
+						$res = $mysqli->query("SELECT id, pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, acte, agenda FROM rendez_vous where pid=" . $_POST['pid']);
 
 						for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
 							$res->data_seek($row_no);
@@ -236,25 +234,7 @@ if (isset($_POST['rendezvous'])) {
 						<td>
 							<?php echo $row['acte']; ?>
 						</td>
-						<td>
-						<p>
-							<button 
-								class="btn btn-success" 
-								<?php if($row['etat'] == 'finalise') { ?>disabled <?php } ?>
-								id="<?php echo $row['id']; ?>" type="button"
-								onclick='getHL7(<?php echo htmlspecialchars(json_encode($row)); ?>)'>
-								<?php 
-									if($row['etat'] == 'finalise') {
-										echo 'Finalise';
-									} else {
-										echo 'Debut d\'examen';
-									}
-								
 
-								?>
-							</button>
-							</p>
-						</td>
 					</tr>
 					<?php
 						}
@@ -298,6 +278,48 @@ if (isset($_POST['rendezvous'])) {
 }
 ?>
 				</table>
+				<h1>Rapport</h1>
+                                <table>
+                                          <tr>
+                                                     <th>id Rapport</th>
+													 <th>contenu</th>
+													 <th>date</th>
+                                          </tr>
+                                          <?php
+
+                                          $res = $mysqli->query("SELECT id, contenu, dateCreation FROM rapport where pid=" . $_POST['pid']);
+
+ 
+
+                                          for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
+
+                                                     $res->data_seek($row_no);
+
+                                                     $row = $res->fetch_assoc();
+
+                                                     ?>
+
+                                                     <tr>
+                                                                <td>
+                                                                          <?php echo $row['id']; ?>
+
+                                                                </td>
+																<td>
+                                                                          <?php echo $row['contenu']; ?>
+                                                                </td>
+																<td>
+                                                                          <?php echo $row['dateCreation']; ?>
+
+                                                                </td>
+                                                     </tr>
+
+                                                     <?php
+
+                                          }
+
+                                          ?>
+
+                                </table>
 			</div>
 			<div class="col-xs-1 col-sm-2 col-md-3"></div>
 		</div>
