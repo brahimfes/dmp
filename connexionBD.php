@@ -6,10 +6,15 @@
  */
 class connexionDB
 {
-    private $host = 'localhost';
-    private $name = 'sih';
-    private $user = "root";
-    private $pass = '';
+    // private $host = 'localhost';
+    // private $name = 'sih';
+    // private $user = "root";
+    // private $pass = '';
+
+    private $host = 'u615qyjzybll9lrm.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';
+    private $user = "znrv09cif9r6878k";
+    private $pass = "besy5nu30n3u1hrh";
+    private $name = "ffl0zhvdujs4a0wc";
     private $connexion;
 
     public function __construct($host = null, $name = null, $user = null, $pass = null)

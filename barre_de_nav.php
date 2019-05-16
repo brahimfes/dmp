@@ -14,13 +14,14 @@
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="accueil.php">Accueil</a></li>
-				<li><a href="maintenance.php">Maintenance</a></li>
-				<li><a href="analyse.php">Donnee collectee</a></li>
-				<li><a href="patient.php">Patient</a></li>
-				<li><a href="modifier.php">Compte</a></li>
-				<li><a href="deconnexion.php">Deconnexion</a></li>
+			<li class="nav-item"><a href="accueil.php">Accueil</a></li>
+			<li class="nav-item"><a href="maintenance.php">Maintenance</a></li>
+			<li class="nav-item"><a href="analyse.php">Donnee collectee</a></li>
+			<li class="nav-item"><a href="patient.php">Patient</a></li>
+			<li class="nav-item"><a href="modifier.php">Compte</a></li>
+			<li class="nav-item"><a href="deconnexion.php">Deconnexion</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
+

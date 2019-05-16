@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'includes.php';
-include ("barre_de_nav.php");
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +27,7 @@ include ("barre_de_nav.php");
 
 	<div class="col-xs-10 col-sm-8 col-md-12">
 	<?php
+include("barre_de_nav.php");
 
 $errors = array();
 $patient;
@@ -59,7 +59,6 @@ if (isset($_POST['rendezvous'])) {
     if (count($errors) > 0) {
         print_r($errors);
     } else {
-        echo 'enregistrement';
         $sql = "insert into rendez_vous (pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, agenda, acte) values
 		(:pid, :nomdupatient, :prenomdupatient, :nomdumedecin, :dates, :heure, :agenda, :acte)";
         $result = $DB->insert($sql,
@@ -74,6 +73,10 @@ if (isset($_POST['rendezvous'])) {
                 'acte' => $_POST['acte'],
             )
         );
+<<<<<<< HEAD
+=======
+
+>>>>>>> ad7474285c4216cbb51e9108d20bc31dbd3c3bda
     }
 }
 
@@ -139,7 +142,6 @@ if (isset($_POST['rendezvous'])) {
 				</table>
 				<h1>Rendez-vous</h1>
 				<!-- <button type="button" class="btn btn-success">Nouveau rendez-vous</button> <br /> -->
-
 				<p>
 					<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
 					 aria-controls="collapseExample">
@@ -148,7 +150,8 @@ if (isset($_POST['rendezvous'])) {
 				</p>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-					pid: <?php echo $_POST['pid']; ?>
+						pid:
+						<?php echo $_POST['pid']; ?>
 						<form method="post" action="afficheDonnee.php">
 							<input type="hidden" name="pid" value="<?php echo $_POST['pid']; ?>" />
 							<input type="hidden" name="nompatient" value="<?php echo $patient['nom']; ?>" />
@@ -234,7 +237,6 @@ if (isset($_POST['rendezvous'])) {
 						<td>
 							<?php echo $row['acte']; ?>
 						</td>
-
 					</tr>
 					<?php
 						}
