@@ -111,7 +111,7 @@ if(!empty($_POST)){
 	                
 	                <form method="post" action="inscription.php">
 	                    
-                        <label>Pseudo</label>
+                        <label>Nom</label>
                     	<br/>
 						<?php
 							if(isset($error_pseudo)){
