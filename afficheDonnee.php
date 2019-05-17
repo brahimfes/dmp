@@ -43,7 +43,6 @@ if (!isset($_POST['pid'])) {
     header('Location: patient.php');
 }
 
-
 if (isset($_POST['rendezvous'])) {
     if (!isset($_POST['agenda'])) {
         array_push($errors, 'Agenda non séléctionnée');
@@ -57,7 +56,6 @@ if (isset($_POST['rendezvous'])) {
     }
     if (!isset($_POST['heure'])) {
         array_push($errors, 'Heure non séléctionnée');
-
     }
     if (!isset($_POST['medecin'])) {
         array_push($errors, 'Médecin non séléctionnée');
@@ -66,7 +64,7 @@ if (isset($_POST['rendezvous'])) {
     if (count($errors) > 0) {
         print_r($errors);
     } else {
-        $sql = "insert into rendez_vous (pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, agenda, acte) values
+        /*$sql = "insert into rendez_vous (pid, nom_du_patient, prenom_du_patient, nom_du_medecin, dates, heure, agenda, acte) values
 		(:pid, :nomdupatient, :prenomdupatient, :nomdumedecin, :dates, :heure, :agenda, :acte)";
         $result = $DB->insert($sql,
             array(
@@ -79,7 +77,20 @@ if (isset($_POST['rendezvous'])) {
                 'agenda' => $_POST['agenda'],
                 'acte' => $_POST['acte'],
             )
-        );
+		);*/
+		?>
+
+		<?php 
+		$pid = $_POST['pid'];
+		$agenda = $_POST['agenda'];
+		$date = $_POST['date'];
+		$medecin = $_POST['medecin'];
+		$acte = $_POST['acte'];
+		$prenom = $_POST['prenompatient'];
+		$nom = $_POST['nompatient'];
+		echo "<script type='text/javascript'>ajouterRdv('$pid', '$agenda', '$acte', '$date', '$medecin', '$prenom', '$nom');</script>";
+
+	
     }
 }
 

@@ -12,6 +12,19 @@ function getHL7(data) {
     addTransaction(message);
 }
 
+function ajouterRdv(pid, agenda, acte, date, medecin, prenom, nom) {
+  nom_du_patient = nom + "^" + prenom +"^^^";
+  nom_du_medecin = '^' + medecin + '^^^^Dr';
+
+  var message = '';
+  message = 'MSH|^~\&|ITS DMP||ITS Middleware||201303080949||SIU^S12|ABC0000000001|P|2.4\n'
+  message = message + 'PID|||' + pid + '||' + nom_du_patient +'||19700101|M||||||||||||||||||||||N|\n'
+  message = message + 'SCH|ID000||||||^' + agenda + '^'+ acte + '||||^^^' + date +'^|||||||||||||||\n'
+  message = message + 'AIP|||' + nom_du_medecin + '|^Doctor\n'
+  //rdvButton = document.getElementById(data.id);
+  addTransaction(message);
+}
+
 const addTransaction = async (data) => {
     const response = await fetch('https://middleware-its.herokuapp.com/transactions', {
       method: 'POST',
