@@ -307,7 +307,7 @@ if (isset($_POST['rendezvous'])) {
                                           </tr>
                                           <?php
 
-                                          $res = $mysqli->query("SELECT id, contenu, 'date' FROM rapport where pid=" . $_POST['pid']);
+                                          $res = $mysqli->query("SELECT id, contenu, dateC FROM rapport where pid=" . $_POST['pid']);
 
  
 
@@ -328,7 +328,7 @@ if (isset($_POST['rendezvous'])) {
                                                                           <?php echo $row['contenu']; ?>
                                                                 </td>
 																<td>
-                                                                          <?php echo $row['date']; ?>
+                                                                          <?php echo $row['dateC']; ?>
 
                                                                 </td>
                                                      </tr>
