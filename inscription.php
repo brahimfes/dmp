@@ -2,7 +2,7 @@
 session_start();
 include_once('includes.php');
 
-if(isset($_SESSION['pseudo'])){
+if($_SESSION['pseudo']!='ASLAN'){
 	header('Location: accueil.php');
 	exit;
 }
